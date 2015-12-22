@@ -1,0 +1,7 @@
+<ul>
+    {{#each items}}
+        <li data-id="{{id}}" {{#if selected}}class="selected"{{/if}}>
+            <span class="name">{{name}}</span>
+        </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,14 @@
+<h1><i class="{{icon}}"></i>
+    {{#if title "Home"}}
+        Welcome {{title}}
+    {{else}}
+        This is {{title}}
+    {{/if}}</h1>
+<p>{{& descr}}</p>
+{{#if items.length}}
+    <ul>
+        {{#each items}}
+            {{> item}}
+        {{/each}}
+    </ul>
+{{/if}}
