@@ -1,0 +1,3 @@
+[submodule "Cobalt-Web"]
+	path = Cobalt-Web
+	url = https://github.com/cobaltians/Cobalt-Web.git
