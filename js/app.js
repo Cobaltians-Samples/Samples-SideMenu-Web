@@ -1,7 +1,5 @@
 var app = {
   debug: true,
-  //debugInBrowser: true,
-  //debugTemplates : true,
   log: function (a, b, c, d, e, f, g, h, i) {
     if (app.debug) {
       cobalt.log(a, b, c, d, e, f, g, h, i);
@@ -40,12 +38,10 @@ var app = {
 
     cobalt.init({
       events: app.page.events,
-      debug: true,
-      debugInBrowser: app.debugInBrowser,
-      debugInDiv: app.debugInDiv
+      debug: true
     });
 
-    if (app.debugInBrowser) {
+    if (cobalt.debugInBrowser) {
       setTimeout(app.page.events.onAppStarted, 200);
       setTimeout(app.page.events.onPageShown, 250);
     }
