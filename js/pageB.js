@@ -2,17 +2,15 @@ app.page = {
   name: 'pageB',
   templates: ['page', 'item'],
   partials: ['item'],
-  events:{
-    'pullToRefresh':function(data,callback){
-      app.page.clear();
-      setTimeout(function(){
-        app.page.fill();
-        cobalt.sendCallback(callback)
-      },1000);
-    }
-  },
   init: function (data) {
     app.page.fill();
+    cobalt.subscribe('cobalt:onPullToRefresh', function(){
+      app.page.clear();
+      setTimeout(function(){
+          app.page.fill();
+          cobalt.pullToRefresh.dismiss();
+      },1000);
+    })
   },
   clear:function(){
     $('#content').html('refreshing...');

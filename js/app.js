@@ -36,10 +36,7 @@ var app = {
       templates.addAsPartials(app.page.partials);
     }
 
-    cobalt.init({
-      events: app.page.events,
-      debug: true
-    });
+    cobalt.init();
 
     if (cobalt.debugInBrowser) {
       setTimeout(app.page.events.onAppStarted, 200);
