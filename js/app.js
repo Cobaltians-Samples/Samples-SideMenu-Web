@@ -36,14 +36,21 @@ var app = {
       templates.addAsPartials(app.page.partials);
     }
 
-    cobalt.init({
-      events: app.page.events,
-      debug: true
+    cobalt.init();
+
+    cobalt.subscribe("cobalt:onPageShown", function(data){
+      if (!app.pageAlreadyShown) {
+        app.page.config(data);
+        app.page.init(data);
+        app.pageAlreadyShown = true;
+      } else {
+        app.page.refresh(data);
+      }
     });
 
     if (cobalt.debugInBrowser) {
-      setTimeout(app.page.events.onAppStarted, 200);
-      setTimeout(app.page.events.onPageShown, 250);
+      setTimeout(cobalt.private.pubsub.handlers['cobalt.onAppStarted'], 200);
+      setTimeout(cobalt.private.pubsub.handlers['cobalt.onPageShown'], 250);
     }
   },
   /*
@@ -64,17 +71,6 @@ var app = {
     },
     refresh: function (data, callback) {
       app.log('page refresh', app.page.name, data);
-    },
-    events: {
-      "onPageShown": function (data) {
-        if (!app.pageAlreadyShown) {
-          app.page.config(data);
-          app.page.init(data);
-          app.pageAlreadyShown = true;
-        } else {
-          app.page.refresh(data);
-        }
-      }
     }
   }
 };

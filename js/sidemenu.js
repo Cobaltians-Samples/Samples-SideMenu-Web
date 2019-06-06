@@ -29,7 +29,7 @@ app.page = {
         $(selector).removeClass('selected');
         $(this).addClass('selected')
         app.log('sending switch event with item=',item);
-        cobalt.sendEvent('sidemenu:switch',item);
+        cobalt.publish('sidemenu:switch',item);
       }
     });
   }
